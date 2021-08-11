@@ -26,7 +26,7 @@ byte  E9[2] = {33, 62};
 
 
 byte  dot[1] = {63};
- 
+
 
 byte  K1[9] = {64, 65, 66, 67, 68, 69, 70, 71, 72};
 byte  K2[2] = {80, 79};
@@ -46,7 +46,7 @@ byte  L5[1] = {98};
 byte  L6[1] = {99};
 byte  L7[1] = {100};
 byte  L8[1] = {101};
- 
+
 
 byte  U_1[7] = {102, 103, 104, 105, 106, 107, 108};
 byte  U_2[1] = {109};
@@ -60,7 +60,7 @@ byte  U_9[1] = {116};
 byte  U_10[1] = {117};
 byte  U_11[1] = {118};
 byte  U_12[7] = {119, 120, 121, 122, 123, 124, 125};
- 
+
 
 byte  B_1[8] = {126, 127, 128, 129, 130, 131, 132, 133};
 byte  B_2[2] = {155, 134};
@@ -74,7 +74,7 @@ byte  B_9[2] = {148, 141};
 byte  B_10[2] = {145, 144};
 byte  B_11[2] = {146, 143};
 byte  B_12[2] = {147, 142};
- 
+
 
 byte  BB1[8] = {161, 162, 163, 164, 165, 166, 167, 168};
 byte  BB2[2] = {190, 169};
@@ -88,7 +88,7 @@ byte  BB9[2] = {183, 176};
 byte  BB10[2] = {180, 179};
 byte  BB11[2] = {181, 178};
 byte  BB12[2] = {182, 177};
- 
+
 
 byte  EE1[8] = {203, 204, 205, 206, 207, 208, 209, 210};
 byte  EE2[2] = {202, 211};
@@ -99,7 +99,7 @@ byte  EE6[3] = {198, 221, 215};
 byte  EE7[3] = {197, 222, 216};
 byte  EE8[3] = {196, 223, 217};
 byte  EE9[1] = {224};
- 
+
 
 byte  N_1[8] = {232, 231, 230, 229, 228, 227, 226, 225};
 byte  N_2[1] = {233};
@@ -147,5 +147,7 @@ byte  *column_pointers_EE[9] = {EE1, EE2, EE3, EE4, EE5, EE6, EE7, EE8, EE9};
 
 byte  column_lengths_N[14] = {8, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 8};
 byte  *column_pointers_N[14] = {N_1, N_2, N_3, N_4, N_5, N_6, N_7, N_8, N_9, N_10, N_11, N_12, N_13, N_14};
+
+byte  *column_pointers_all[99] = {D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, D13, D14, E1, E2, E3, E4, E5, E6, E7, E8, E9, dot, K1, K2, K3, K4, K5, K6, K7, K8, L1, L2, L3, L4, L5, L6, L7, L8, U_1, U_2, U_3, U_4, U_5, U_6, U_7, U_8, U_9, U_10, U_11, U_12, B_1, B_2, B_3, B_4, B_5, B_6, B_7, B_8, B_9, B_10, B_11, B_12, BB1, BB2, BB3, BB4, BB5, BB6, BB7, BB8, BB9, BB10, BB11, BB12, EE1, EE2, EE3, EE4, EE5, EE6, EE7, EE8, EE9, N_1, N_2, N_3, N_4, N_5, N_6, N_7, N_8, N_9, N_10, N_11, N_12, N_13, N_14};
 
 byte  led_pointers[10] = {column_pointers_D, column_pointers_E, column_pointers_dot, column_pointers_K, column_pointers_L, column_pointers_U, column_pointers_B, column_pointers_BB, column_pointers_EE, column_pointers_N};
