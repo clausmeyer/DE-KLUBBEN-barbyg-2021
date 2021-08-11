@@ -148,6 +148,7 @@ byte  *column_pointers_EE[9] = {EE1, EE2, EE3, EE4, EE5, EE6, EE7, EE8, EE9};
 byte  column_lengths_N[14] = {8, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 8};
 byte  *column_pointers_N[14] = {N_1, N_2, N_3, N_4, N_5, N_6, N_7, N_8, N_9, N_10, N_11, N_12, N_13, N_14};
 
+byte column_length_all[99] = {6, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 8, 2, 3, 3, 3, 3, 3, 3, 2, 1, 9, 2, 2, 2, 2, 2, 2, 2, 8, 1, 1, 1, 1, 1, 1, 1, 7, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 7, 8, 2, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 8, 2, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 8, 2, 3, 3, 3, 3, 3, 3, 1, 8, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 8};
 byte  *column_pointers_all[99] = {D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, D13, D14, E1, E2, E3, E4, E5, E6, E7, E8, E9, dot, K1, K2, K3, K4, K5, K6, K7, K8, L1, L2, L3, L4, L5, L6, L7, L8, U_1, U_2, U_3, U_4, U_5, U_6, U_7, U_8, U_9, U_10, U_11, U_12, B_1, B_2, B_3, B_4, B_5, B_6, B_7, B_8, B_9, B_10, B_11, B_12, BB1, BB2, BB3, BB4, BB5, BB6, BB7, BB8, BB9, BB10, BB11, BB12, EE1, EE2, EE3, EE4, EE5, EE6, EE7, EE8, EE9, N_1, N_2, N_3, N_4, N_5, N_6, N_7, N_8, N_9, N_10, N_11, N_12, N_13, N_14};
 
 byte  led_pointers[10] = {column_pointers_D, column_pointers_E, column_pointers_dot, column_pointers_K, column_pointers_L, column_pointers_U, column_pointers_B, column_pointers_BB, column_pointers_EE, column_pointers_N};
