@@ -236,107 +236,19 @@ void setup() {
 void by_columns() {
 
 
-  int delayval_col = 50;
+  int delayval_col = 0;
   int R_val = 255;
-  current_time_fade_in = millis();
-  for (int i = 0; i < sizeof(column_lengths_D); i++) {
-    flash_letter(column_pointers_D[i], column_lengths_D[i], R_val, 0, 0);
+  for (int i = 0; i < sizeof(column_length_all); i++) {
+    flash_letter(column_pointers_all[i], column_length_all[i], 255, 0, 0);
     current_time_fade_in = millis();
-    while (current_time_fade_in < last_time_fade_in + delayval_col) {
+    while (current_time_fade_in < last_time_fade_in + 20) {
       glitter();
       current_time_fade_in = millis();
     }
     last_time_fade_in = current_time_fade_in;
   }
 
-
-  for (int i = 0; i < sizeof(column_lengths_E); i++) {
-    flash_letter(column_pointers_E[i], column_lengths_E[i], R_val, 0, 0);
-    current_time_fade_in = millis();
-    while (current_time_fade_in < last_time_fade_in + delayval_col) {
-      glitter();
-      current_time_fade_in = millis();
-    }
-    last_time_fade_in = current_time_fade_in;
-  }
-
-  for (int i = 0; i < sizeof(column_lengths_dot); i++) {
-    flash_letter(column_pointers_dot[i], column_lengths_dot[i], R_val, 0, 0);
-    pixels.show();
-    delay(delayval_col);
-  }
-
-  for (int i = 0; i < sizeof(column_lengths_K); i++) {
-    flash_letter(column_pointers_K[i], column_lengths_K[i], R_val, 0, 0);
-    current_time_fade_in = millis();
-    while (current_time_fade_in < last_time_fade_in + delayval_col) {
-      glitter();
-      current_time_fade_in = millis();
-    }
-    last_time_fade_in = current_time_fade_in;
-  }
-
-  for (int i = 0; i < sizeof(column_lengths_L); i++) {
-    flash_letter(column_pointers_L[i], column_lengths_L[i], R_val, 0, 0);
-    current_time_fade_in = millis();
-    while (current_time_fade_in < last_time_fade_in + delayval_col) {
-      glitter();
-      current_time_fade_in = millis();
-    }
-    last_time_fade_in = current_time_fade_in;
-  }
-
-  for (int i = 0; i < sizeof(column_lengths_U); i++) {
-    flash_letter(column_pointers_U[i], column_lengths_U[i], R_val, 0, 0);
-    current_time_fade_in = millis();
-    while (current_time_fade_in < last_time_fade_in + delayval_col) {
-      glitter();
-      current_time_fade_in = millis();
-    }
-    last_time_fade_in = current_time_fade_in;
-  }
-
-  for (int i = 0; i < sizeof(column_lengths_B); i++) {
-    flash_letter(column_pointers_B[i], column_lengths_B[i], R_val, 0, 0);
-    current_time_fade_in = millis();
-    while (current_time_fade_in < last_time_fade_in + delayval_col) {
-      glitter();
-      current_time_fade_in = millis();
-    }
-    last_time_fade_in = current_time_fade_in;
-  }
-
-  for (int i = 0; i < sizeof(column_lengths_BB); i++) {
-    flash_letter(column_pointers_BB[i], column_lengths_BB[i], R_val, 0, 0);
-    current_time_fade_in = millis();
-    while (current_time_fade_in < last_time_fade_in + delayval_col) {
-      glitter();
-      current_time_fade_in = millis();
-    }
-    last_time_fade_in = current_time_fade_in;
-  }
-
-  for (int i = 0; i < sizeof(column_lengths_EE); i++) {
-    flash_letter(column_pointers_EE[i], column_lengths_EE[i], R_val, 0, 0);
-    current_time_fade_in = millis();
-    while (current_time_fade_in < last_time_fade_in + delayval_col) {
-      glitter();
-      current_time_fade_in = millis();
-    }
-    last_time_fade_in = current_time_fade_in;
-  }
-
-  for (int i = 0; i < sizeof(column_lengths_N); i++) {
-    flash_letter(column_pointers_N[i], column_lengths_N[i], R_val, 0, 0);
-    current_time_fade_in = millis();
-    while (current_time_fade_in < last_time_fade_in + delayval_col) {
-      glitter();
-      current_time_fade_in = millis();
-    }
-    last_time_fade_in = current_time_fade_in;
-  }
-
-  pixels.show();
+  //pixels.show();
   //delay(delayval_col * 50);
   //turn_all_off();
 }
@@ -363,14 +275,16 @@ void single_from_left() {
 void three_colors() {
   for (int j = 0; j < 253; j++) {
     pixels.setPixelColor(j, pixels.Color(255, 0, 0)); // Moderately bright green color.
+    turned_on[j] = 1;
+    glitter();
     pixels.show();
   }
   for (int count = 0; count < 5; count++) {
-  for (int j = 0; j < 253; j++) {
+    for (int j = 0; j < 253; j++) {
       int k = j + 85;
       int l = j - 85;
       if (k > 252) k = k - 253;
-      if (l < 0) l = l + 252;
+      if (l < 0) l = l + 253;
       pixels.setPixelColor(j, pixels.Color(255, 0, 0));
       pixels.setPixelColor(k, pixels.Color(0, 255, 0));
       pixels.setPixelColor(l, pixels.Color(0, 0, 255));
@@ -394,7 +308,7 @@ void three_colors() {
   }
   stochastic_fade_out();
   turn_all_off();
-  delay(2000);
+  delay(1000);
 }
 
 void turn_all_off() {
@@ -405,6 +319,40 @@ void turn_all_off() {
   pixels.show();
 }
 
+void back_and_forth() {
+  turn_all_off();
+  for (int j = 0; j < 253; j++) {
+    pixels.setPixelColor(126 + j, pixels.Color(0, 0, 255));
+    pixels.setPixelColor(126 - j, pixels.Color(0, 0, 255));
+    pixels.show();
+    delay(1);
+  }
+  for (int i = 0; i < 10; i++) {
+    for (int j = 0; j < 253; j++) {
+      pixels.setPixelColor(j, pixels.Color(255, 0, 0)); // Moderately bright green color.
+      pixels.setPixelColor(253 - j, pixels.Color(0, 0, 255));
+      pixels.setPixelColor(126 + j, pixels.Color(0, 255, 0));
+      pixels.setPixelColor(126 - j, pixels.Color(0, 255, 0));
+      pixels.show();
+      delay(1);
+    }
+  }
+
+  for (int j = 0; j < 253; j++) {
+    pixels.setPixelColor(126 + j, pixels.Color(0, 0, 255));
+    pixels.setPixelColor(126 - j, pixels.Color(0, 0, 255));
+    pixels.show();
+    delay(1);
+  }
+
+  for (int j = 0; j < 253; j++) {
+    pixels.setPixelColor(126 + j, pixels.Color(0, 0, 0));
+    pixels.setPixelColor(126 - j, pixels.Color(0, 0, 0));
+    pixels.show();
+    delay(1);
+  }
+
+}
 void glitter() {
   int vals;
   current_time_glitter = millis();
@@ -423,7 +371,7 @@ void glitter() {
     }
     pixels.show();
   }
-  
+
 
 }
 byte turn_off_counter = 0;
@@ -469,6 +417,22 @@ void stochastic_fade_out() {
 }
 int state = 0;
 
+void glimmer() {
+  current_time = millis();
+  by_columns();
+
+  last_time = millis();
+  current_time = millis();
+  while (current_time < last_time + 10000) {
+    current_time = millis();
+    glitter();
+  }
+  last_time = millis();
+  stochastic_fade_out();
+}
+
+int val = 10;
+bool flag = 1;
 void loop() {
 
   /*-----------------------------------------------------*/
@@ -513,8 +477,44 @@ void loop() {
   //sharp_center();
   //fill_from_left();
   //single_from_left();
-  three_colors();
+  //three_colors();
   //by_columns();
-  /*-----------------------------------------------------*/
+  //back_and_forth();
+  //glimmer();
+
+
+  val=255;
+  Serial.println(val);
+  for (int j = 0; j < 126; j = j + 2) {
+    pixels.setPixelColor(j + 126, pixels.Color(val, 0, 0)); // Moderately bright green color.
+    pixels.setPixelColor(126 - j, pixels.Color(val, 0, 0)); // Moderately bright green color.
+    pixels.show();
+
+    delay(1);
+  }
+  for (int j = 1; j < 126; j = j + 2) {
+    pixels.setPixelColor(j, pixels.Color(val, 0, 0)); // Moderately bright green color.
+    pixels.setPixelColor(252 - j, pixels.Color(val, 0, 0)); // Moderately bright green color.
+    pixels.show();
+    delay(1);
+  }
+
+  for (int j = 0; j < 126; j = j + 2) {
+    pixels.setPixelColor(j + 126, pixels.Color(0, 0, val)); // Moderately bright green color.
+    pixels.setPixelColor(126 - j, pixels.Color(0, 0, val)); // Moderately bright green color.
+    pixels.show();
+
+    delay(1);
+  }
+  for (int j = 1; j < 126; j = j + 2) {
+    pixels.setPixelColor(j, pixels.Color(0, 0, val)); // Moderately bright green color.
+    pixels.setPixelColor(252 - j, pixels.Color(0, 0, val)); // Moderately bright green color.
+    pixels.show();
+    delay(1);
+  }
+
+  //delay(1000);
+  //turn_all_off();
+
 
 }
