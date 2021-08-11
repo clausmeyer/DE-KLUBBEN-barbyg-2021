@@ -171,8 +171,8 @@ void fill_from_left() {
   }
   }
 */
-/*
-  void change_colors() {
+
+void change_colors() {
   int value = 0;
   int fades = 23; // Skru op når der er mere juice tilgængelig
   for (int j = 0; j < fades; j++) {
@@ -218,8 +218,8 @@ void fill_from_left() {
     delay(delayval);
     value = value - 10;
   }
-  }
-*/
+}
+
 void setup() {
 
   Serial.begin(9600);
@@ -341,15 +341,66 @@ void by_columns() {
   //turn_all_off();
 }
 
-void hvid() {
+void single_from_left() {
   for (int j = 0; j < 253; j++) {
-    pixels.setPixelColor(j, pixels.Color(255, 255, 255)); // Moderately bright green color.
+    pixels.setPixelColor(j, pixels.Color(255, 0, 0)); // Moderately bright green color.
+    turned_on[j] = 1;
+    pixels.show();
+    glitter();
+    //delay(1);
   }
+  //delay(1000);
+  for (int j = 0; j < 253; j++) {
+    pixels.setPixelColor(j, pixels.Color(0, 0, 0)); // Moderately bright green color.
+    turned_on[j] = 0;
+    pixels.show();
+    glitter();
+    //delay(1);
+  }
+  //turn_all_off();
+}
+
+void three_colors() {
+  for (int j = 0; j < 253; j++) {
+    pixels.setPixelColor(j, pixels.Color(255, 0, 0)); // Moderately bright green color.
+    pixels.show();
+  }
+  for (int count = 0; count < 5; count++) {
+  for (int j = 0; j < 253; j++) {
+      int k = j + 85;
+      int l = j - 85;
+      if (k > 252) k = k - 253;
+      if (l < 0) l = l + 252;
+      pixels.setPixelColor(j, pixels.Color(255, 0, 0));
+      pixels.setPixelColor(k, pixels.Color(0, 255, 0));
+      pixels.setPixelColor(l, pixels.Color(0, 0, 255));
+      turned_on[j] = 1;
+      pixels.show();
+      //glitter();
+      //delay(1);
+    }
+  }
+  for (int j = 85; j < 253; j++) {
+    pixels.setPixelColor(j, pixels.Color(0, 255, 0)); // Moderately bright green color.
+    pixels.show();
+  }
+  for (int j = 0; j < 253; j++) {
+    pixels.setPixelColor(j, pixels.Color(0, 0, 255)); // Moderately bright green color.
+    pixels.show();
+  }
+  for (int j = 0; j < 253; j++) {
+    pixels.setPixelColor(j, pixels.Color(255, 0, 0)); // Moderately bright green color.
+    pixels.show();
+  }
+  stochastic_fade_out();
+  turn_all_off();
+  delay(2000);
 }
 
 void turn_all_off() {
   for (int j = 0; j < 253; j++) {
     pixels.setPixelColor(j, pixels.Color(0, 0, 0)); // Moderately bright green color.
+    turned_on[j] = 0;
   }
   pixels.show();
 }
@@ -372,6 +423,7 @@ void glitter() {
     }
     pixels.show();
   }
+  
 
 }
 byte turn_off_counter = 0;
@@ -439,7 +491,7 @@ void loop() {
   }
 
 
-  switch (state) {
+  /*switch (state) {
     case 0:
       Serial.println("fade");
       by_columns();
@@ -456,11 +508,12 @@ void loop() {
       Serial.println("in");
       stochastic_fade_out();
       break;
-  }
+    }*/
 
   //sharp_center();
   //fill_from_left();
-  //hvid();
+  //single_from_left();
+  three_colors();
   //by_columns();
   /*-----------------------------------------------------*/
 
