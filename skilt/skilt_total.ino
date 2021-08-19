@@ -39,6 +39,7 @@ void fade_out() {
 }
 
 void flash_letter(byte *letter_array, byte arr_length, byte R, byte G, byte B) {
+
   for (int j = 0; j < arr_length; j++) {
     pixels.setPixelColor(*(letter_array + j), pixels.Color(R, G, B)); // Moderately bright green color.
     if ( R > 0 || G > 0 || B > 0) turned_on[*(letter_array + j)] = 1;
@@ -56,36 +57,7 @@ void flash_letter(byte *letter_array, byte arr_length, byte R, byte G, byte B) {
   pixels.show();
 
   }*/
-/*
-  void sharp_center() {
-  // fade thingy
 
-  for (int i = 0; i < letters; i++) {
-    int indices[10] = {i, i - 1, i + 1, i - 2, i + 2, i - 3, i + 3, i - 4, i + 4, i - 5};
-    for (int j = 0; j < 10; j++) {
-      if (indices[j] < 0) indices[j] = indices[j] + 10;
-      else if (indices[j] > 9) indices[j] = indices[j] - 10;
-    }
-    /* for (int i = 0; i < sizeof(column_lengths_D); i++) {
-       flash_letter(column_pointers_D[indices[0]], column_lengths_D[indices[0]], 255, 0, 0);
-      }*//*
-    pixels.show();
-    for (int i = 0; i < 10; i++) flash_letter(led_pointers[indices[1]], 10, 125, 0, 0);
-    Serial.println(sizeof(led_pointers[indices[1]]));
-    flash_letter(led_pointers[indices[2]], array_lengths[indices[2]], 125, 0, 0);
-    flash_letter(led_pointers[indices[3]], array_lengths[indices[3]], 100, 0, 0);
-    flash_letter(led_pointers[indices[4]], array_lengths[indices[4]], 100, 0, 0);
-    flash_letter(led_pointers[indices[5]], array_lengths[indices[5]], 75, 0, 0);
-    flash_letter(led_pointers[indices[6]], array_lengths[indices[6]], 75, 0, 0);
-    flash_letter(led_pointers[indices[7]], array_lengths[indices[7]], 25, 0, 0);
-    flash_letter(led_pointers[indices[8]], array_lengths[indices[8]], 25, 0, 0);
-    flash_letter(led_pointers[indices[9]], array_lengths[indices[9]], 25, 0, 0);
-    //Serial.println(indices[4]);
-    pixels.show();
-    delay(delayval);
-  }
-  }
-*/
 void fill_from_left() {
   int delayval_col = 500;
   int R_val = 50;
@@ -153,34 +125,16 @@ void fill_from_left() {
   delay(delayval_col * 5);
   turn_all_off();
 }
-/*
-  void fade_in_and_out() {
-  int value = 10;
-  int fades = 23; // Skru op når der er mere juice tilgængelig
-  for (int j = 0; j < fades; j++) {
-    for (int i = 0; i < letters; i++) {
-      flash_letter(led_pointers[i], array_lengths[i], 0, 0, value);
-    }
-    delay(delayval);
-    value = value + 10;
-  }
-  for (int j = 0; j < fades; j++) {
-    for (int i = 0; i < letters; i++) {
-      flash_letter(led_pointers[i], array_lengths[i], 0, 0, value);
-    }
-    delay(delayval);
-    value = value - 10;
-  }
-  }
-*/
 
 void sharp_center(byte red, byte green, byte blue) {
+  if (interrupted == true) return;
   int centerColor = 200;
   float colourFall = 20;
   int fallLength = 20;
   int delayval = 200 / 10;
 
   for (int i = 0; i < sizeof(column_length_all) + fallLength * 2; i++) {
+    if (interrupted == true) return;
     //turn_all_off();
     //columnColors[i] = centerColor;
     int cnt = i - fallLength;
@@ -189,6 +143,7 @@ void sharp_center(byte red, byte green, byte blue) {
       flash_letter(column_pointers_all[cnt], column_length_all[cnt], red, green, blue);
     }
     for (int j = 1; j < fallLength; j++) {
+      if (interrupted == true) return;
       if (cnt + j >= 0 && cnt + j < sizeof(column_length_all)) {
         //flash_letter(column_pointers_all[cnt + j], column_length_all[cnt + j], red - (colourFall * j), green - (colourFall * j), blue - (colourFall * j));
         flash_letter(column_pointers_all[cnt + j], column_length_all[cnt + j], red * (1 - (j / colourFall)), green * (1 - (j / colourFall)), blue * (1 - (j / colourFall)));
@@ -198,7 +153,7 @@ void sharp_center(byte red, byte green, byte blue) {
         flash_letter(column_pointers_all[cnt - j], column_length_all[cnt - j], red * (1 - (j / colourFall)), green * (1 - (j / colourFall)), blue * (1 - (j / colourFall)));
       }
     }
-
+    if (interrupted == true) return;
     pixels.show();
     delay(delayval);
     //turn_all_off();
@@ -263,7 +218,7 @@ void interruptFunc() {
   int delayval = 200 / 10;
   int tail = 5;
 
-  for (int i = 0; i < sizeof(column_length_all) + tail; i++) {//wipe the board
+  for (int i = 0; i < sizeof(column_length_all) + tail * 2; i++) { //wipe the board
     int cnt = i - tail;
     if (cnt >= 0 && cnt < sizeof(column_length_all)) {
       flash_letter(column_pointers_all[cnt], column_length_all[cnt], 66, 68, 66);
@@ -280,7 +235,7 @@ void interruptFunc() {
       flash_letter(column_pointers_all[cnt - tail], column_length_all[cnt - tail], 0, 0, 0);
     }
   }
-
+  interrupted = true;
 
 }
 
@@ -340,14 +295,18 @@ void single_from_left() {
 }
 
 void three_colors() {
+  if (interrupted == true) return;
   for (int j = 0; j < 253; j++) {
+    if (interrupted == true) return;
     pixels.setPixelColor(j, pixels.Color(255, 0, 0)); // Moderately bright green color.
     turned_on[j] = 1;
     glitter();
     pixels.show();
   }
   for (int count = 0; count < 5; count++) {
+    if (interrupted == true) return;
     for (int j = 0; j < 253; j++) {
+      if (interrupted == true) return;
       int k = j + 85;
       int l = j - 85;
       if (k > 252) k = k - 253;
@@ -356,6 +315,7 @@ void three_colors() {
       pixels.setPixelColor(k, pixels.Color(0, 255, 0));
       pixels.setPixelColor(l, pixels.Color(0, 0, 255));
       turned_on[j] = 1;
+      if (interrupted == true) return;
       pixels.show();
       //glitter();
       //delay(1);
@@ -363,16 +323,20 @@ void three_colors() {
   }
   for (int j = 85; j < 253; j++) {
     pixels.setPixelColor(j, pixels.Color(0, 255, 0)); // Moderately bright green color.
+    if (interrupted == true) return;
     pixels.show();
   }
   for (int j = 0; j < 253; j++) {
     pixels.setPixelColor(j, pixels.Color(0, 0, 255)); // Moderately bright green color.
+    if (interrupted == true) return;
     pixels.show();
   }
   for (int j = 0; j < 253; j++) {
     pixels.setPixelColor(j, pixels.Color(255, 0, 0)); // Moderately bright green color.
+    if (interrupted == true) return;
     pixels.show();
   }
+  if (interrupted == true) return;
   stochastic_fade_out();
   turn_all_off();
   delay(1000);
@@ -388,45 +352,58 @@ void turn_all_off() {
 
 void back_and_forth() {
   turn_all_off();
+  if (interrupted == true) return;
   for (int j = 0; j < 253; j++) {
+    if (interrupted == true) return;
     pixels.setPixelColor(126 + j, pixels.Color(0, 0, 255));
     pixels.setPixelColor(126 - j, pixels.Color(0, 0, 255));
+    if (interrupted == true) return;
     pixels.show();
     delay(1);
   }
   for (int i = 0; i < 10; i++) {
+    if (interrupted == true) return;
     for (int j = 0; j < 253; j++) {
+      if (interrupted == true) return;
       pixels.setPixelColor(j, pixels.Color(255, 0, 0)); // Moderately bright green color.
       pixels.setPixelColor(253 - j, pixels.Color(0, 0, 255));
       pixels.setPixelColor(126 + j, pixels.Color(0, 255, 0));
       pixels.setPixelColor(126 - j, pixels.Color(0, 255, 0));
+      if (interrupted == true) return;
       pixels.show();
       delay(1);
     }
   }
 
   for (int j = 0; j < 253; j++) {
+    if (interrupted == true) return;
     pixels.setPixelColor(126 + j, pixels.Color(0, 0, 255));
     pixels.setPixelColor(126 - j, pixels.Color(0, 0, 255));
+    if (interrupted == true) return;
     pixels.show();
     delay(1);
   }
 
   for (int j = 0; j < 253; j++) {
+    if (interrupted == true) return;
     pixels.setPixelColor(126 + j, pixels.Color(0, 0, 0));
     pixels.setPixelColor(126 - j, pixels.Color(0, 0, 0));
+    if (interrupted == true) return;
     pixels.show();
     delay(1);
   }
 
 }
 void glitter() {
+  if (interrupted == true) return;
   int vals;
   current_time_glitter = millis();
   if (current_time_glitter > last_time_glitter + 20) {
+    if (interrupted == true) return;
     last_time_glitter = current_time_glitter;
     srand(micros());
     for (int i = 0; i < 253; i++) {
+      if (interrupted == true) return;
       if (turned_on[i] > 0) {
         int probab = rand();
         if (probab < 5000) {
@@ -436,6 +413,7 @@ void glitter() {
         }
       }
     }
+    if (interrupted == true) return;
     pixels.show();
   }
 
@@ -443,6 +421,7 @@ void glitter() {
 }
 byte turn_off_counter = 0;
 void stochastic_fade_out() {
+  if (interrupted == true) return;
   //int vals;
   srand(micros());
   /*for (int i = 0; i < 253; i++) {
@@ -460,10 +439,12 @@ void stochastic_fade_out() {
     }*/
   byte places[253];
   for (int i = 1; i < 253; i++) {
+    if (interrupted == true) return;
     places[i - 1] = i;
   }
 
   for (int i = 0; i < 252; i++) {
+    if (interrupted == true) return;
     int swap = rand() % 8;
     byte temp = places[i];
     places[i] = places[swap];
@@ -474,23 +455,27 @@ void stochastic_fade_out() {
     //Serial.println(places[i]);
   }
   for (int i = 0; i < 252; i++) {
+    if (interrupted == true) return;
     pixels.setPixelColor(places[i], pixels.Color(0, 0, 0));
     glitter();
     turned_on[places[i]] = 0;
+    if (interrupted == true) return;
     pixels.show();
     delay(1);
   }
 
 }
-int state = 0;
+int state = 3;
 
 void glimmer() {
+  if (interrupted == true) return;
   current_time = millis();
   by_columns();
 
   last_time = millis();
   current_time = millis();
   while (current_time < last_time + 10000) {
+    if (interrupted == true) return;
     current_time = millis();
     glitter();
   }
@@ -500,57 +485,42 @@ void glimmer() {
 
 int val = 10;
 bool flag = 1;
+
 void loop() {
 
-  /*-----------------------------------------------------*/
-  /*
-  */
-  /*-----------------------------------------------------*/
-  //fade_in_and_out();
-  //change_colors();
-  current_time = millis();
-  if (current_time > last_time + 3000) {
-    Serial.println(1);
-    last_time = millis();
-    state = state + 1;
-    turn_off_counter = 0;
-    /*for (int i = 0; i < 253; i++) {
-      pixels.setPixelColor(i, pixels.Color(150, 0, 0));
-      }*/
-    if (state > 3) state = 0;
-
+  if (interrupted == true) {
+    int preState = state;
+    while (state == preState) {
+      state = random(4);
+    }
+    interrupted = false;
   }
 
-
-  /*switch (state) {
+  switch (state) {
     case 0:
-      Serial.println("fade");
-      by_columns();
+      three_colors();
       break;
     case 1:
-      Serial.println("glitter");
-      glitter();
+      back_and_forth();
       break;
     case 2:
-      Serial.println("glitter");
-      glitter();
+      glimmer();
       break;
     case 3:
-      Serial.println("in");
-      stochastic_fade_out();
+      sharp_center(200, 0, 0);
+      sharp_center(0, 200, 0);
+      sharp_center(0, 0, 200);
       break;
-    }*/
+  }
 
   //sharp_center();
   //fill_from_left();
   //single_from_left();
-  three_colors();//used
+  //used
   //by_columns();
-  back_and_forth();//used
-  glimmer();//used
-  sharp_center(150, 0, 50);
-  sharp_center(0, 200, 0);
-  sharp_center(0, 0, 200);
+  //used
+  //used
+
 
   /*
     val=255;
