@@ -1,0 +1,26 @@
+Change Component Designator: OldDesignator=CLK NewDesignator=CLKI
+Change Component Designator: OldDesignator=CLK NewDesignator=CLKO
+Change Component Designator: OldDesignator=Gnd NewDesignator=GndI
+Change Component Designator: OldDesignator=Gnd NewDesignator=GNDO
+Change Component Designator: OldDesignator=LAT NewDesignator=LATI
+Change Component Designator: OldDesignator=LAT NewDesignator=LATO
+Change Component Designator: OldDesignator=OE NewDesignator=OEI
+Change Component Designator: OldDesignator=OE NewDesignator=OEO
+Change Component Designator: OldDesignator=VCC NewDesignator=12V
+Added Component: Designator=IN(Molex kk 254 5p)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=IN-1
+Added Pin To Net: NetName=Data-In Pin=IN-2
+Added Pin To Net: NetName=Clock Pin=IN-3
+Added Pin To Net: NetName=Latch Pin=IN-4
+Added Pin To Net: NetName=OE Pin=IN-5
+Added Member To Class: ClassName=7SegmentDriver Member=Component CLKI  
+Added Member To Class: ClassName=7SegmentDriver Member=Component CLKO  
+Added Member To Class: ClassName=7SegmentDriver Member=Component GndI  
+Added Member To Class: ClassName=7SegmentDriver Member=Component GNDO  
+Added Member To Class: ClassName=7SegmentDriver Member=Component IN Molex kk 254 5p
+Added Member To Class: ClassName=7SegmentDriver Member=Component LATI  
+Added Member To Class: ClassName=7SegmentDriver Member=Component LATO  
+Added Member To Class: ClassName=7SegmentDriver Member=Component OEI  
+Added Member To Class: ClassName=7SegmentDriver Member=Component OEO  
+Added Member To Class: ClassName=7SegmentDriver Member=Component Q6 ?

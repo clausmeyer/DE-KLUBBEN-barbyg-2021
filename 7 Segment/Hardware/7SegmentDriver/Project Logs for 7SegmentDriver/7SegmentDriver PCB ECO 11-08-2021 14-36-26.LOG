@@ -1,0 +1,19 @@
+Change Component Designator: OldDesignator=*? NewDesignator=*1
+Change Component Designator: OldDesignator=*? NewDesignator=*2
+Change Component Designator: OldDesignator=*? NewDesignator=*3
+Change Component Designator: OldDesignator=*? NewDesignator=*4
+Change Component Designator: OldDesignator=*? NewDesignator=*5
+Change Component Designator: OldDesignator=*? NewDesignator=*6
+Change Component Designator: OldDesignator=*? NewDesignator=*7
+Change Component Designator: OldDesignator=*? NewDesignator=*8
+Change Component Designator: OldDesignator=*? NewDesignator=*9
+Change Component Designator: OldDesignator=ST2p? NewDesignator=ST1
+Change Component Designator: OldDesignator=ST? NewDesignator=ST2
+Added Member To Class: ClassName=7SegmentDriver Member=Component *1 Solder pad 1x5mm
+Added Member To Class: ClassName=7SegmentDriver Member=Component *2 Solder pad 1x5mm
+Added Member To Class: ClassName=7SegmentDriver Member=Component *3 Solder pad 1x5mm
+Added Member To Class: ClassName=7SegmentDriver Member=Component *4 Solder pad 1x5mm
+Added Member To Class: ClassName=7SegmentDriver Member=Component *5 Solder pad 1x5mm
+Added Member To Class: ClassName=7SegmentDriver Member=Component *6 Solder pad 1x5mm
+Added Member To Class: ClassName=7SegmentDriver Member=Component *7 Solder pad 1x5mm
+Added Member To Class: ClassName=7SegmentDriver Member=Component *8 Solder pad 1x5mm

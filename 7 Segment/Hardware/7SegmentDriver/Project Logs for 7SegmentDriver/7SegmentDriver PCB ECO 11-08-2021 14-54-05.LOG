@@ -1,0 +1,63 @@
+Removed Pin From Net: NetName=GND Pin=*1-1
+Removed Pin From Net: NetName=Data-In Pin=*2-1
+Removed Pin From Net: NetName=Data-In Pin=*3-1
+Removed Pin From Net: NetName=Clock Pin=*4-1
+Removed Pin From Net: NetName=Clock Pin=*5-1
+Removed Pin From Net: NetName=Latch Pin=*6-1
+Removed Pin From Net: NetName=Latch Pin=*7-1
+Removed Pin From Net: NetName=OE Pin=*8-1
+Removed Pin From Net: NetName=OE Pin=*9-1
+Removed Pin From Net: NetName=GND Pin=*-1
+Removed Pin From Net: NetName=Data-In Pin=SR1-9
+Removed Member From Class: ClassName=7SegmentDriver Member=*1
+Removed Member From Class: ClassName=7SegmentDriver Member=*3
+Removed Member From Class: ClassName=7SegmentDriver Member=*4
+Removed Member From Class: ClassName=7SegmentDriver Member=*5
+Removed Member From Class: ClassName=7SegmentDriver Member=*6
+Removed Member From Class: ClassName=7SegmentDriver Member=*7
+Removed Member From Class: ClassName=7SegmentDriver Member=*8
+Removed Member From Class: ClassName=7SegmentDriver Member=*9
+Removed Member From Class: ClassName=7SegmentDriver Member=*
+Change Component Comment : Designator=*2 Old Comment=Solder pad 1x5mm New Comment= 
+Change Component Designator: OldDesignator=*2 NewDesignator=Gnd1
+Change Component Designator: OldDesignator=ST1 NewDesignator=ST2p?
+Change Component Designator: OldDesignator=ST2 NewDesignator=ST?
+Added Component: Designator=CLKI(solder pad 1x5mm)
+Add component. Clean all parameters for all variants
+Added Component: Designator=CLKO(solder pad 1x5mm)
+Add component. Clean all parameters for all variants
+Added Component: Designator=DI(solder pad 1x5mm)
+Add component. Clean all parameters for all variants
+Added Component: Designator=DO(solder pad 1x5mm)
+Add component. Clean all parameters for all variants
+Added Component: Designator=GndO(solder pad 1x5mm)
+Add component. Clean all parameters for all variants
+Added Component: Designator=LATI(solder pad 1x5mm)
+Add component. Clean all parameters for all variants
+Added Component: Designator=LATO(solder pad 1x5mm)
+Add component. Clean all parameters for all variants
+Added Component: Designator=OEI(solder pad 1x5mm)
+Add component. Clean all parameters for all variants
+Added Component: Designator=OEO(solder pad 1x5mm)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=Clock Pin=CLKI-1
+Added Pin To Net: NetName=Clock Pin=CLKO-1
+Added Pin To Net: NetName=Data-In Pin=DI-1
+Added Pin To Net: NetName=GND Pin=Gnd1-1
+Added Pin To Net: NetName=GND Pin=GndO-1
+Added Pin To Net: NetName=Latch Pin=LATI-1
+Added Pin To Net: NetName=Latch Pin=LATO-1
+Added Pin To Net: NetName=OE Pin=OEI-1
+Added Pin To Net: NetName=OE Pin=OEO-1
+Added Pin To Net: NetName=Data-Out Pin=DO-1
+Added Pin To Net: NetName=Data-Out Pin=SR1-9
+Added Net: Name=Data-Out
+Added Member To Class: ClassName=7SegmentDriver Member=Component CLKI  
+Added Member To Class: ClassName=7SegmentDriver Member=Component CLKO  
+Added Member To Class: ClassName=7SegmentDriver Member=Component DI  
+Added Member To Class: ClassName=7SegmentDriver Member=Component DO  
+Added Member To Class: ClassName=7SegmentDriver Member=Component GndO  
+Added Member To Class: ClassName=7SegmentDriver Member=Component LATI  
+Added Member To Class: ClassName=7SegmentDriver Member=Component LATO  
+Added Member To Class: ClassName=7SegmentDriver Member=Component OEI  
+Added Member To Class: ClassName=7SegmentDriver Member=Component OEO  

@@ -1,0 +1,10 @@
+Removed Pin From Net: NetName=GND Pin=Mx-3-1
+Removed Pin From Net: NetName=5V Pin=Mx-3-2
+Removed Pin From Net: NetName=12V Pin=Mx-3-3
+Removed Member From Class: ClassName=7SegmentDriver Member=Mx-3
+Added Component: Designator=ST3p1(KF301-3p_0.2")
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=ST3p1-1
+Added Pin To Net: NetName=5V Pin=ST3p1-2
+Added Pin To Net: NetName=12V Pin=ST3p1-3
+Added Member To Class: ClassName=7SegmentDriver Member=Component ST3p1 KF301-3p

@@ -1,0 +1,50 @@
+Removed Pin From Net: NetName=GND Pin=Mx-1-1
+Removed Pin From Net: NetName=Data-In Pin=Mx-1-2
+Removed Pin From Net: NetName=Clock Pin=Mx-1-3
+Removed Pin From Net: NetName=Latch Pin=Mx-1-4
+Removed Pin From Net: NetName=OE Pin=Mx-1-5
+Removed Pin From Net: NetName=GND Pin=Mx-2-1
+Removed Pin From Net: NetName=Clock Pin=Mx-2-3
+Removed Pin From Net: NetName=Latch Pin=Mx-2-4
+Removed Pin From Net: NetName=OE Pin=Mx-2-5
+Removed Member From Class: ClassName=7SegmentDriver Member=Mx-1
+Removed Member From Class: ClassName=7SegmentDriver Member=Mx-2
+Added Component: Designator=*?(solder pad 1x5mm)
+Add component. Clean all parameters for all variants
+Added Component: Designator=*?(solder pad 1x5mm)
+Add component. Clean all parameters for all variants
+Added Component: Designator=*?(solder pad 1x5mm)
+Add component. Clean all parameters for all variants
+Added Component: Designator=*?(solder pad 1x5mm)
+Add component. Clean all parameters for all variants
+Added Component: Designator=*?(solder pad 1x5mm)
+Add component. Clean all parameters for all variants
+Added Component: Designator=*?(solder pad 1x5mm)
+Add component. Clean all parameters for all variants
+Added Component: Designator=*?(solder pad 1x5mm)
+Add component. Clean all parameters for all variants
+Added Component: Designator=*?(solder pad 1x5mm)
+Add component. Clean all parameters for all variants
+Added Component: Designator=*?(solder pad 1x5mm)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=*-1
+Added Pin To Net: NetName=Clock Pin=*?-1
+Added Pin To Net: NetName=Clock Pin=*?-1
+Added Pin To Net: NetName=Data-In Pin=*?-1
+Added Pin To Net: NetName=Data-In Pin=*?-1
+Added Pin To Net: NetName=GND Pin=*?-1
+Added Pin To Net: NetName=Latch Pin=*?-1
+Added Pin To Net: NetName=Latch Pin=*?-1
+Added Pin To Net: NetName=OE Pin=*?-1
+Added Pin To Net: NetName=OE Pin=*?-1
+Added Pin To Net: NetName=Data-In Pin=SR1-9
+Added Member To Class: ClassName=7SegmentDriver Member=Component *? Solder pad 1x5mm
+Added Member To Class: ClassName=7SegmentDriver Member=Component *? Solder pad 1x5mm
+Added Member To Class: ClassName=7SegmentDriver Member=Component *? Solder pad 1x5mm
+Added Member To Class: ClassName=7SegmentDriver Member=Component *? Solder pad 1x5mm
+Added Member To Class: ClassName=7SegmentDriver Member=Component *? Solder pad 1x5mm
+Added Member To Class: ClassName=7SegmentDriver Member=Component *? Solder pad 1x5mm
+Added Member To Class: ClassName=7SegmentDriver Member=Component *? Solder pad 1x5mm
+Added Member To Class: ClassName=7SegmentDriver Member=Component *? Solder pad 1x5mm
+Added Member To Class: ClassName=7SegmentDriver Member=Component *? Solder pad 1x5mm
+Added Room: Name=7SegmentDriver

@@ -1,0 +1,10 @@
+Added Component: Designator=ST2p?(KF301-2p_0.2")
+Add component. Clean all parameters for all variants
+Added Component: Designator=ST?(KF301-2p_0.2")
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=5V Pin=ST2p?-1
+Added Pin To Net: NetName=GND Pin=ST2p?-2
+Added Pin To Net: NetName=GND Pin=ST?-1
+Added Pin To Net: NetName=12V Pin=ST?-2
+Added Member To Class: ClassName=7SegmentDriver Member=Component ST2p? KF301-2p
+Added Member To Class: ClassName=7SegmentDriver Member=Component ST? KF301-2p

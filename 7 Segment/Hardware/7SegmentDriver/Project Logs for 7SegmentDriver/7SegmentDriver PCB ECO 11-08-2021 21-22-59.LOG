@@ -1,0 +1,17 @@
+Change Component Designator: OldDesignator=CLKI NewDesignator=CLK
+Change Component Designator: OldDesignator=CLKO NewDesignator=CLK
+Change Component Designator: OldDesignator=GndI NewDesignator=Gnd
+Change Component Designator: OldDesignator=GNDO NewDesignator=GND
+Change Component Designator: OldDesignator=LATI NewDesignator=LAT
+Change Component Designator: OldDesignator=LATO NewDesignator=LAT
+Change Component Designator: OldDesignator=OEI NewDesignator=OE
+Change Component Designator: OldDesignator=OEO NewDesignator=OE
+Added Component: Designator=Out(Molex kk 254 5p)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=Out-1
+Added Pin To Net: NetName=Data-Out Pin=Out-2
+Added Pin To Net: NetName=Clock Pin=Out-3
+Added Pin To Net: NetName=Latch Pin=Out-4
+Added Pin To Net: NetName=OE Pin=Out-5
+Added Member To Class: ClassName=7SegmentDriver Member=Component Out Molex kk 254 5p
+Added Room: Name=7SegmentDriver

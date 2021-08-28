@@ -1,0 +1,4 @@
+Added Component: Designator=*(solder pad 1x5mm)
+Add component. Clean all parameters for all variants
+Added Member To Class: ClassName=7SegmentDriver Member=Component * Solder pad 1x5mm
+Added Member To Class: ClassName=7SegmentDriver Member=Component Mx-1 Molex kk 254 5p

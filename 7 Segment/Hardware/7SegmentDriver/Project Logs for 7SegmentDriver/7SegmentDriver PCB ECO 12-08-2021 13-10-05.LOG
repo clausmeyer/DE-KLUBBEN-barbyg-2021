@@ -1,0 +1,9 @@
+Added Component: Designator=R1(Axial 0.3" 1/4W)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=5V Pin=R1-1
+Added Pin To Net: NetName=OE Pin=R1-2
+Added Member To Class: ClassName=7SegmentDriver Member=Component CLK  
+Added Member To Class: ClassName=7SegmentDriver Member=Component GND  
+Added Member To Class: ClassName=7SegmentDriver Member=Component LAT  
+Added Member To Class: ClassName=7SegmentDriver Member=Component OE  
+Added Member To Class: ClassName=7SegmentDriver Member=Component R1 AX0.3"
