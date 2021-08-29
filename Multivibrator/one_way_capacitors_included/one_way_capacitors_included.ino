@@ -1,7 +1,7 @@
 #include <Adafruit_NeoPixel.h>
 
 #define PIN_0 15
-#define NUM_PIXELS 430
+#define NUM_PIXELS 550
 #define NUMPIXELS_SIDE 11
 #define NUMPIXELS_TOP 18
 #define PIN_1 18
@@ -31,7 +31,14 @@ int segment_2_arm_1[88];
 
 int segment_1_arm_2[25];
 int segment_2_arm_2[93];
-const int R_val = 250;
+
+int segment_ground[48];
+int segment_emitter_1[8];
+int segment_emitter_2[8];
+
+const int R_val = 0;
+const int G_val = 0;
+const int B_val = 150;
 int delayval = 30;
 
 int count_8 = 0;
@@ -46,7 +53,8 @@ int count_2_arm_1 = 0;
 int count_1_arm_1 = 0;
 int count_2_arm_2 = 0;
 int count_1_arm_2 = 0;
-
+int count_emitter_1 = 0;
+int count_emitter_2 = 0;
 
 int tick = 4095 / (NUMPIXELS_SIDE - 1);
 bool cap_1 = false;
@@ -90,6 +98,38 @@ void turn_all_off() {
   }
   pixels.show();
 }
+
+
+void row_ground() {
+  for (int i = 0; i < sizeof(segment_ground) / 4 ; i = i + 1) {
+    pixels.setPixelColor(segment_ground[(i)], pixels.Color(R_val, G_val, B_val));
+  }
+}
+int row_emitter_1_count = 0;
+void row_emitter_1() {
+  for (int i = 0; i < sizeof(segment_emitter_1) / 4 ; i = i + 3) {
+    pixels.setPixelColor(segment_emitter_1[(i + row_emitter_1_count)], pixels.Color(0, 0, 0));
+  }
+  row_emitter_1_count++;
+  for (int i = 0; i < sizeof(segment_emitter_1) / 4-3; i = i + 3) {
+    pixels.setPixelColor(segment_emitter_1[(i + row_emitter_1_count)], pixels.Color(R_val, G_val, B_val));
+    Serial.print("Writing S1: "); Serial.println(segment_emitter_1[(i + row_emitter_1_count)]);
+  }
+  if (row_emitter_1_count > 2) row_emitter_1_count = 0;
+}
+
+int row_emitter_2_count = 0;
+void row_emitter_2() {
+  for (int i = 0; i < sizeof(segment_emitter_2) / 4 ; i = i + 3) {
+    pixels.setPixelColor(segment_emitter_2[(i + row_emitter_2_count)], pixels.Color(0, 0, 0));
+  }
+  row_emitter_2_count++;
+  for (int i = 0; i < sizeof(segment_emitter_2) / 4 -3; i = i + 3) {
+    pixels.setPixelColor(segment_emitter_2[(i + row_emitter_2_count)], pixels.Color(R_val, G_val, B_val));
+    Serial.print("Writing S2: "); Serial.println(segment_emitter_2[(i + row_emitter_2_count)]);
+  }
+  if (row_emitter_2_count > 2) row_emitter_2_count = 0;
+}
 int row_1_count = 0;
 void row_1() {
   for (int i = 0; i < sizeof(segment_4) / 4 - 2; i = i + 3) {
@@ -97,7 +137,7 @@ void row_1() {
   }
   row_1_count++;
   for (int i = 0; i < sizeof(segment_4) / 4 - 2; i = i + 3) {
-    pixels.setPixelColor(segment_4[(i + row_1_count)], pixels.Color(R_val, 0, 0));
+    pixels.setPixelColor(segment_4[(i + row_1_count)], pixels.Color(R_val, G_val, B_val));
   }
   if (row_1_count > 2) row_1_count = 0;
 }
@@ -109,7 +149,7 @@ void row_2() {
   }
   row_2_count++;
   for (int i = 0; i < sizeof(segment_5) / 4 - 2; i = i + 3) {
-    pixels.setPixelColor(segment_5[(i + row_2_count)], pixels.Color(R_val, 0, 0));
+    pixels.setPixelColor(segment_5[(i + row_2_count)], pixels.Color(R_val, G_val, B_val));
   }
   if (row_2_count > 2) row_2_count = 0;
 }
@@ -121,7 +161,7 @@ void row_3() {
   }
   row_3_count++;
   for (int i = 0; i < sizeof(segment_2) / 4 - 2; i = i + 3) {
-    pixels.setPixelColor(segment_2[(i + row_3_count)], pixels.Color(R_val, 0, 0));
+    pixels.setPixelColor(segment_2[(i + row_3_count)], pixels.Color(R_val, G_val, B_val));
   }
   if (row_3_count > 2) row_3_count = 0;
 }
@@ -133,11 +173,11 @@ void row_4() {
   }
   row_4_count++;
   for (int i = 0; i < sizeof(segment_3) / 4 - 19; i = i + 3) {
-    pixels.setPixelColor(segment_3[(i + row_4_count)], pixels.Color(R_val, 0, 0));
+    pixels.setPixelColor(segment_3[(i + row_4_count)], pixels.Color(R_val, G_val, B_val));
   }
 
   for (int i = sizeof(segment_3) / 4 - 17; i < sizeof(segment_3) / 4 ; i = i + 3) {
-    pixels.setPixelColor(segment_3[(i)], pixels.Color(R_val, 0, 0));
+    pixels.setPixelColor(segment_3[(i)], pixels.Color(R_val, G_val, B_val));
   }
   if (row_4_count > 2) row_4_count = 0;
 }
@@ -149,11 +189,11 @@ void row_5() {
   }
   row_5_count++;
   for (int i = 0; i < sizeof(segment_6) / 4 - 12; i = i + 3) {
-    pixels.setPixelColor(segment_6[(i )], pixels.Color(R_val, 0, 0));
+    pixels.setPixelColor(segment_6[(i )], pixels.Color(R_val, G_val, B_val));
   }
 
   for (int i = sizeof(segment_6) / 4 - 12; i < sizeof(segment_6) / 4 - 2; i = i + 3) {
-    pixels.setPixelColor(segment_6[(i + row_5_count )], pixels.Color(R_val, 0, 0));
+    pixels.setPixelColor(segment_6[(i + row_5_count )], pixels.Color(R_val, G_val, B_val));
   }
   if (row_5_count > 2) row_5_count = 0;
 }
@@ -164,7 +204,7 @@ void row_6() {
   }
   row_6_count++;
   for (int i = 0; i < sizeof(segment_7) / 4 - 2; i = i + 3) {
-    pixels.setPixelColor(segment_7[(i + row_6_count)], pixels.Color(R_val, 0, 0));
+    pixels.setPixelColor(segment_7[(i + row_6_count)], pixels.Color(R_val, G_val, B_val));
   }
   if (row_6_count > 2) row_6_count = 0;
 }
@@ -175,7 +215,7 @@ void row_7() {
   }
   row_7_count++;
   for (int i = 0; i < sizeof(segment_8) / 4 - 2; i = i + 3) {
-    pixels.setPixelColor(segment_8[(i + row_7_count)], pixels.Color(R_val, 0, 0));
+    pixels.setPixelColor(segment_8[(i + row_7_count)], pixels.Color(R_val, G_val, B_val));
   }
   if (row_7_count > 2) row_7_count = 0;
 }
@@ -186,7 +226,7 @@ void row_8() {
   }
   row_8_count++;
   for (int i = 0; i < sizeof(segment_9) / 4 - 2; i = i + 3) {
-    pixels.setPixelColor(segment_9[(i + row_8_count)], pixels.Color(R_val, 0, 0));
+    pixels.setPixelColor(segment_9[(i + row_8_count)], pixels.Color(R_val, G_val, B_val));
   }
   if (row_8_count > 2) row_8_count = 0;
 }
@@ -198,7 +238,7 @@ void row_1_arm_1() {
   }
   row_1_arm_1_count++;
   for (int i = 0; i < sizeof(segment_1_arm_1) / 4 - 2; i = i + 3) {
-    arm_1.setPixelColor(segment_1_arm_1[(i + row_1_arm_1_count)], arm_1.Color(R_val, 0, 0));
+    arm_1.setPixelColor(segment_1_arm_1[(i + row_1_arm_1_count)], arm_1.Color(R_val, G_val, B_val));
   }
   if (row_1_arm_1_count > 2) row_1_arm_1_count = 0;
 }
@@ -210,7 +250,7 @@ void row_2_arm_1() {
   }
   row_2_arm_1_count++;
   /*for (int i = 0; i < sizeof(segment_2_arm_1) / 4 - 2; i = i + 3) {
-    arm_1.setPixelColor(segment_2_arm_1[(i )], arm_1.Color(R_val, 0, 0));
+    arm_1.setPixelColor(segment_2_arm_1[(i )], arm_1.Color(R_val, G_val, B_val));
     }*/
   if (row_2_arm_1_count > 2) row_2_arm_1_count = 0;
 }
@@ -222,7 +262,7 @@ void row_1_arm_2() {
   }
   row_1_arm_2_count++;
   for (int i = 0; i < sizeof(segment_1_arm_2) / 4 - 2; i = i + 3) {
-    arm_2.setPixelColor(segment_1_arm_2[(i + row_1_arm_2_count)], arm_2.Color(R_val, 0, 0));
+    arm_2.setPixelColor(segment_1_arm_2[(i + row_1_arm_2_count)], arm_2.Color(R_val, G_val, B_val));
   }
   if (row_1_arm_2_count > 2) row_1_arm_2_count = 0;
 }
@@ -234,7 +274,7 @@ void row_2_arm_2() {
   }
   row_2_arm_2_count++;
   for (int i = 0; i < sizeof(segment_2_arm_2) / 4 - 2; i = i + 3) {
-    arm_2.setPixelColor(segment_2_arm_2[(i + row_2_arm_2_count)], arm_2.Color(R_val, 0, 0));
+    arm_2.setPixelColor(segment_2_arm_2[(i + row_2_arm_2_count)], arm_2.Color(R_val, G_val, B_val));
   }
   if (row_2_arm_2_count > 2) row_2_arm_2_count = 0;
 }
@@ -293,7 +333,9 @@ void one_way() {
     row_1();
     count_1 = 0;
   }
-
+  row_ground();
+  row_emitter_1();
+  //row_emitter_2();
 }
 
 void other_way() {
@@ -350,6 +392,9 @@ void other_way() {
     row_1_other_way();
     count_1 = 0;
   }
+  row_ground();
+  //row_emitter_1();
+  row_emitter_2();
 }
 
 void setup() {
@@ -440,6 +485,22 @@ void setup() {
     j++;
   }
   j = 0;
+  for (int i = 430; i < 477; i++) {
+    segment_ground[j] = i;
+    j++;
+  }
+  j = 0;
+  for (int i = 422; i < 430; i++) {
+    segment_emitter_1[j] = i;
+    j++;
+  }
+  j = 0;
+  for (int i = 484; i > 476; i--) {
+    segment_emitter_2[j] = i;
+    Serial.println(segment_emitter_2[j]);
+    j++;
+  }
+  j = 0;
 
   pixels.begin();
   arm_1.begin();
@@ -468,11 +529,10 @@ void loop() {
 
     for (int i = 0; i < sizeof(segment_1) / 4 - 2; i = i + 3) {
       //if(i+j > 107) i = i-107;
-      pixels.setPixelColor(segment_1[i + j], pixels.Color(R_val, 0, 0));
+      pixels.setPixelColor(segment_1[i + j], pixels.Color(R_val, G_val, B_val));
     }
     int A0_val = analogRead(A0);
     int A6_val = analogRead(A6);
-    Serial.println("AM HERE D:");
     chargeUp(&capacitor_2, A6);
     chargeUp(&capacitor_1, A0);
     if (A0_val >= A6_val) {
@@ -494,17 +554,17 @@ void loop() {
 
     /*
           if ((i+j) % 4 == 0) {
-            pixels.setPixelColor(segment_2[(i+j) / 4], pixels.Color(R_val, 0, 0));
+            pixels.setPixelColor(segment_2[(i+j) / 4], pixels.Color(R_val, G_val, B_val));
             pixels.setPixelColor(segment_2[(i+j) / 4 + 1], pixels.Color(0, 0, 0));
             pixels.setPixelColor(segment_2[(i+j) / 4 + 2], pixels.Color(0, 0, 0));
           }
           else if ((i+j) % 3 == 0) {
-            pixels.setPixelColor(segment_3[(i+j) / 4], pixels.Color(R_val, 0, 0));
+            pixels.setPixelColor(segment_3[(i+j) / 4], pixels.Color(R_val, G_val, B_val));
             pixels.setPixelColor(segment_3[(i+j) / 4 + 1], pixels.Color(0, 0, 0));
             pixels.setPixelColor(segment_3[(i+j) / 4 + 2], pixels.Color(0, 0, 0));
           }
           else if ((i+j) % 2 == 0) {
-            pixels.setPixelColor(segment_4[(i+j) / 4], pixels.Color(R_val, 0, 0));
+            pixels.setPixelColor(segment_4[(i+j) / 4], pixels.Color(R_val, G_val, B_val));
             pixels.setPixelColor(segment_4[(i+j) / 4 + 1], pixels.Color(0, 0, 0));
             pixels.setPixelColor(segment_4[(i+j) / 4 + 2], pixels.Color(0, 0, 0));
           }
