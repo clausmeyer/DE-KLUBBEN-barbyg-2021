@@ -1,0 +1,24 @@
+Removed Pin From Net: NetName=NetJ1_3 Pin=J1-3
+Removed Pin From Net: NetName=12V Pin=J1-4
+Removed Pin From Net: NetName=NetJ1_5 Pin=J1-5
+Removed Pin From Net: NetName=12V Pin=J1-6
+Removed Pin From Net: NetName=NetJ1_7 Pin=J1-7
+Removed Pin From Net: NetName=12V Pin=J1-8
+Removed Pin From Net: NetName=NetJ1_2 Pin=Q8-3
+Removed Pin From Net: NetName=NetJ1_1 Pin=Q9-3
+Removed Pin From Net: NetName=NetJ1_9 Pin=Q13-3
+Removed Pin From Net: NetName=NetJ1_10 Pin=Q14-3
+Added Pin To Net: NetName=12V Pin=J1-3
+Added Pin To Net: NetName=NetJ1_7 Pin=J1-4
+Added Pin To Net: NetName=12V Pin=J1-5
+Added Pin To Net: NetName=NetJ1_5 Pin=J1-6
+Added Pin To Net: NetName=12V Pin=J1-7
+Added Pin To Net: NetName=NetJ1_3 Pin=J1-8
+Added Pin To Net: NetName=NetJ1_9 Pin=Q8-3
+Added Pin To Net: NetName=NetJ1_10 Pin=Q9-3
+Added Pin To Net: NetName=NetJ1_2 Pin=Q13-3
+Added Pin To Net: NetName=NetJ1_1 Pin=Q14-3
+Change Net Name : Old Net Name=NetJ1_3 New Net Name=NetJ1_8
+Change Net Name : Old Net Name=NetJ1_5 New Net Name=NetJ1_6
+Change Net Name : Old Net Name=NetJ1_7 New Net Name=NetJ1_4
+Added Room: Name=7SegmentDriver

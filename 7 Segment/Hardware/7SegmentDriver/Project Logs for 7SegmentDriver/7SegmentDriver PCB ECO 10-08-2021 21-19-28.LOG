@@ -1,0 +1,61 @@
+Added Component: Designator=SR1(74HC595N)
+Add component. Clean all parameters for all variants
+Added Component: Designator=SR2(74HC595N)
+Add component. Clean all parameters for all variants
+Added Component: Designator=SR3(74HC595N)
+Add component. Clean all parameters for all variants
+Added Component: Designator=SR4(74HC595N)
+Add component. Clean all parameters for all variants
+Added Component: Designator=SR5(74HC595N)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=5V Pin=SR1-10
+Added Pin To Net: NetName=5V Pin=SR1-16
+Added Pin To Net: NetName=5V Pin=SR2-10
+Added Pin To Net: NetName=5V Pin=SR2-16
+Added Pin To Net: NetName=5V Pin=SR3-10
+Added Pin To Net: NetName=5V Pin=SR3-16
+Added Pin To Net: NetName=5V Pin=SR4-10
+Added Pin To Net: NetName=5V Pin=SR4-16
+Added Pin To Net: NetName=5V Pin=SR5-10
+Added Pin To Net: NetName=5V Pin=SR5-16
+Added Net: Name=5V
+Added Pin To Net: NetName=GND Pin=SR1-8
+Added Pin To Net: NetName=GND Pin=SR2-8
+Added Pin To Net: NetName=GND Pin=SR3-8
+Added Pin To Net: NetName=GND Pin=SR4-8
+Added Pin To Net: NetName=GND Pin=SR5-8
+Added Net: Name=GND
+Added Pin To Net: NetName=NetSR1_9 Pin=SR1-9
+Added Pin To Net: NetName=NetSR1_9 Pin=SR2-14
+Added Net: Name=NetSR1_9
+Added Pin To Net: NetName=NetSR1_11 Pin=SR1-11
+Added Pin To Net: NetName=NetSR1_11 Pin=SR2-11
+Added Pin To Net: NetName=NetSR1_11 Pin=SR3-11
+Added Pin To Net: NetName=NetSR1_11 Pin=SR4-11
+Added Pin To Net: NetName=NetSR1_11 Pin=SR5-11
+Added Net: Name=NetSR1_11
+Added Pin To Net: NetName=NetSR1_12 Pin=SR1-12
+Added Pin To Net: NetName=NetSR1_12 Pin=SR2-12
+Added Pin To Net: NetName=NetSR1_12 Pin=SR3-12
+Added Pin To Net: NetName=NetSR1_12 Pin=SR4-12
+Added Pin To Net: NetName=NetSR1_12 Pin=SR5-12
+Added Net: Name=NetSR1_12
+Added Pin To Net: NetName=NetSR1_13 Pin=SR1-13
+Added Pin To Net: NetName=NetSR1_13 Pin=SR2-13
+Added Pin To Net: NetName=NetSR1_13 Pin=SR3-13
+Added Pin To Net: NetName=NetSR1_13 Pin=SR4-13
+Added Pin To Net: NetName=NetSR1_13 Pin=SR5-13
+Added Net: Name=NetSR1_13
+Added Pin To Net: NetName=NetSR1_14 Pin=SR1-14
+Added Net: Name=NetSR1_14
+Added Pin To Net: NetName=NetSR2_9 Pin=SR2-9
+Added Pin To Net: NetName=NetSR2_9 Pin=SR3-14
+Added Net: Name=NetSR2_9
+Added Pin To Net: NetName=NetSR3_9 Pin=SR3-9
+Added Pin To Net: NetName=NetSR3_9 Pin=SR4-14
+Added Net: Name=NetSR3_9
+Added Pin To Net: NetName=NetSR4_9 Pin=SR4-9
+Added Pin To Net: NetName=NetSR4_9 Pin=SR5-14
+Added Net: Name=NetSR4_9
+Added Class: Name=7SegmentDriver
+Added Room: Name=7SegmentDriver

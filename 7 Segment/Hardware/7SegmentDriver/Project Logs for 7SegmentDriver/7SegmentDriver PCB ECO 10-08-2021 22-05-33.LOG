@@ -1,0 +1,10 @@
+Added Component: Designator=SR?(74HC595N)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=SR?-8
+Added Pin To Net: NetName=5V Pin=SR?-10
+Added Pin To Net: NetName=NetSR1_11 Pin=SR?-11
+Added Pin To Net: NetName=NetSR1_12 Pin=SR?-12
+Added Pin To Net: NetName=NetSR1_13 Pin=SR?-13
+Added Pin To Net: NetName=NetSR1_14 Pin=SR?-14
+Added Pin To Net: NetName=5V Pin=SR?-16
+Added Member To Class: ClassName=7SegmentDriver Member=Component SR? 74HC595N

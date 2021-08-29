@@ -1,0 +1,74 @@
+Added Component: Designator=Mx-2(Molex kk 254 8p)
+Add component. Clean all parameters for all variants
+Added Component: Designator=Q8(SOT23 Handsoldering)
+Add component. Clean all parameters for all variants
+Added Component: Designator=Q9(SOT23 Handsoldering)
+Add component. Clean all parameters for all variants
+Added Component: Designator=Q10(SOT23 Handsoldering)
+Add component. Clean all parameters for all variants
+Added Component: Designator=Q11(SOT23 Handsoldering)
+Add component. Clean all parameters for all variants
+Added Component: Designator=Q12(SOT23 Handsoldering)
+Add component. Clean all parameters for all variants
+Added Component: Designator=Q13(SOT23 Handsoldering)
+Add component. Clean all parameters for all variants
+Added Component: Designator=Q14(SOT23 Handsoldering)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=12V Pin=Mx-2-1
+Added Pin To Net: NetName=GND Pin=Q8-2
+Added Pin To Net: NetName=GND Pin=Q9-2
+Added Pin To Net: NetName=GND Pin=Q10-2
+Added Pin To Net: NetName=GND Pin=Q11-2
+Added Pin To Net: NetName=GND Pin=Q12-2
+Added Pin To Net: NetName=GND Pin=Q13-2
+Added Pin To Net: NetName=GND Pin=Q14-2
+Added Pin To Net: NetName=NetMx-2_2 Pin=Mx-2-2
+Added Pin To Net: NetName=NetMx-2_2 Pin=Q8-3
+Added Net: Name=NetMx-2_2
+Added Pin To Net: NetName=NetMx-2_3 Pin=Mx-2-3
+Added Pin To Net: NetName=NetMx-2_3 Pin=Q9-3
+Added Net: Name=NetMx-2_3
+Added Pin To Net: NetName=NetMx-2_4 Pin=Mx-2-4
+Added Pin To Net: NetName=NetMx-2_4 Pin=Q10-3
+Added Net: Name=NetMx-2_4
+Added Pin To Net: NetName=NetMx-2_5 Pin=Mx-2-5
+Added Pin To Net: NetName=NetMx-2_5 Pin=Q11-3
+Added Net: Name=NetMx-2_5
+Added Pin To Net: NetName=NetMx-2_6 Pin=Mx-2-6
+Added Pin To Net: NetName=NetMx-2_6 Pin=Q12-3
+Added Net: Name=NetMx-2_6
+Added Pin To Net: NetName=NetMx-2_7 Pin=Mx-2-7
+Added Pin To Net: NetName=NetMx-2_7 Pin=Q13-3
+Added Net: Name=NetMx-2_7
+Added Pin To Net: NetName=NetMx-2_8 Pin=Mx-2-8
+Added Pin To Net: NetName=NetMx-2_8 Pin=Q14-3
+Added Net: Name=NetMx-2_8
+Added Pin To Net: NetName=NetQ8_1 Pin=Q8-1
+Added Pin To Net: NetName=NetQ8_1 Pin=SR3-1
+Added Net: Name=NetQ8_1
+Added Pin To Net: NetName=NetQ9_1 Pin=Q9-1
+Added Pin To Net: NetName=NetQ9_1 Pin=SR3-2
+Added Net: Name=NetQ9_1
+Added Pin To Net: NetName=NetQ10_1 Pin=Q10-1
+Added Pin To Net: NetName=NetQ10_1 Pin=SR3-3
+Added Net: Name=NetQ10_1
+Added Pin To Net: NetName=NetQ11_1 Pin=Q11-1
+Added Pin To Net: NetName=NetQ11_1 Pin=SR3-4
+Added Net: Name=NetQ11_1
+Added Pin To Net: NetName=NetQ12_1 Pin=Q12-1
+Added Pin To Net: NetName=NetQ12_1 Pin=SR3-5
+Added Net: Name=NetQ12_1
+Added Pin To Net: NetName=NetQ13_1 Pin=Q13-1
+Added Pin To Net: NetName=NetQ13_1 Pin=SR3-6
+Added Net: Name=NetQ13_1
+Added Pin To Net: NetName=NetQ14_1 Pin=Q14-1
+Added Pin To Net: NetName=NetQ14_1 Pin=SR3-7
+Added Net: Name=NetQ14_1
+Added Member To Class: ClassName=7SegmentDriver Member=Component Mx-2 Molex kk 254 8p
+Added Member To Class: ClassName=7SegmentDriver Member=Component Q8 ?
+Added Member To Class: ClassName=7SegmentDriver Member=Component Q9 ?
+Added Member To Class: ClassName=7SegmentDriver Member=Component Q10 ?
+Added Member To Class: ClassName=7SegmentDriver Member=Component Q11 ?
+Added Member To Class: ClassName=7SegmentDriver Member=Component Q12 ?
+Added Member To Class: ClassName=7SegmentDriver Member=Component Q13 ?
+Added Member To Class: ClassName=7SegmentDriver Member=Component Q14 ?

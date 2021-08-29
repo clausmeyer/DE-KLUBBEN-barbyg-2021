@@ -1,0 +1,4 @@
+Change Net Name : Old Net Name=NetSR1_11 New Net Name=Clock
+Change Net Name : Old Net Name=NetSR1_12 New Net Name=Latch
+Change Net Name : Old Net Name=NetSR1_13 New Net Name=OE
+Change Net Name : Old Net Name=NetSR1_14 New Net Name=Data
