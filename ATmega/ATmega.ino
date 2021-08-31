@@ -1,7 +1,7 @@
 #include <Adafruit_NeoPixel.h>
 
 #define PIN            15
-#define NUMPIXELS      454
+#define NUMPIXELS      437
 #define PINPSU         2
 #define NUMPIXELSPSU   454
 
@@ -63,11 +63,11 @@ void loop() {
 
   if (buttonPressed == true) {
     buttonAnim();
-    theaterChase(pixels.Color(255, 0, 0), 0, 181, 100, 3);
+    theaterChase(pixels.Color(0, 255, 0), 0, 181, 100, 3); // Clock line
     xtal();
   }
   else {
-    theaterChase(pixels.Color(255, 0, 0), 0, 437, 100, 3);
+    IdleAnimation();
     UpdateDisplay(targetValue);
   }
   pixels.show();
@@ -78,16 +78,16 @@ void loop() {
    int col2 = ((millis()/1000)+1)%2;
    
   // 230V AC
-  theaterChasePSU(psu.Color(20*col1, 0, 20*col2), 0, 34, 50, 5*dir);         // Top
-  theaterChasePSU(psu.Color(20*col2, 0, 20*col1), 423, 31, 50, 5*dir);       //Bottom
+  theaterChasePSU(psu.Color(255*col1, 0, 255*col2), 0, 34, 50, 5*dir);         // Top
+  theaterChasePSU(psu.Color(255*col2, 0, 255*col1), 423, 31, 50, 5*dir);       //Bottom
 
   // 12V AC
-  theaterChasePSU(psu.Color(20*col1, 0, 20*col2), 34, 123, 150, 3*dir);    // Top
-  theaterChasePSU(psu.Color(20*col2, 0, 20*col1), 369, 54, 150, 3*dir);   // Bottom
+  theaterChasePSU(psu.Color(255*col1, 0, 255*col2), 34, 123, 150, 3*dir);    // Top
+  theaterChasePSU(psu.Color(255*col2, 0, 255*col1), 369, 54, 150, 3*dir);   // Bottom
   
   // 12V DC
-  theaterChasePSU(psu.Color(20, 0, 0), 262, 107, 150, -3);   // Top
-  theaterChasePSU(psu.Color(0, 0, 20), 157, 105, 150, -3);  // Bottom
+  theaterChasePSU(psu.Color(255, 0, 0), 262, 107, 150, -3);   // Top
+  theaterChasePSU(psu.Color(0, 0, 255), 157, 105, 150, -3);  // Bottom
   psu.show(); // Update strip with new contents
   psu.clear();
 }
