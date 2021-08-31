@@ -12,13 +12,13 @@
 #include <uStepperS.h>
 #include <Adafruit_NeoPixel.h>
 #ifdef __AVR__
- #include <avr/power.h> // Required for 16 MHz Adafruit Trinket
+#include <avr/power.h> // Required for 16 MHz Adafruit Trinket
 #endif
 
 // Which pin on the Arduino is connected to the NeoPixels?
 // On a Trinket or Gemma we suggest changing this to 1:
-int LED_PIN_BODY = 2;
-int LED_PIN_EYE =  3;
+int LED_PIN_BODY = 5;
+int LED_PIN_EYE =  6;
 
 // How many NeoPixels are attached to the Arduino?
 int LED_COUNT_BODY = 130;
@@ -46,7 +46,9 @@ unsigned long last_time = 0;
 unsigned long current_time_LED = 0;
 unsigned long last_time_LED = 0;
 bool tail_flag = false;
-
+bool interrupt_flag = false;
+int angle = -1000;
+bool thyra_flag = false;
 void setup() {
   // These lines are specifically to support the Adafruit Trinket 5V 16 MHz.
   // Any other board, you can remove this part (but no harm leaving it):
@@ -54,46 +56,60 @@ void setup() {
   clock_prescale_set(clock_div_1);
 #endif
   // END of Trinket-specific code.
-Serial.println("1");
+  Serial.println("1");
   krop.begin();           // INITIALIZE NeoPixel strip object (REQUIRED)
   eye.begin();           // INITIALIZE NeoPixel strip object (REQUIRED)
   //krop.show();            // Turn OFF all pixels ASAP
   //eye.show();            // Turn OFF all pixels ASAP
-  
-  
+
+
+  stepper.setup();
+  pinMode(4, INPUT);
+  //pinMode(5, OUTPUT);
   //stepper.setup();
   stepper.checkOrientation(30.0);       //Check orientation of motor connector with +/- 30 microsteps movement
   Serial.begin(9600);
-  stepper.setHoldCurrent(100);
-  stepper.setRPM(1);
-  stepper.setMaxVelocity  ( 200 );
+
+  stepper.setCurrent(50);
   Serial.println("2");
 }
 
 
 // loop() function -- runs repeatedly as long as board is on ---------------
 
-void loop() { Serial.println("3");
+void loop() {
   // Fill along the length of the strip in various colors...
-//  colorWipe(strip.Color(255,   0,   0), 50); // Red
-//  colorWipe(strip.Color(  0, 255,   0), 50); // Green
-//  colorWipe(strip.Color(  0,   0, 255), 50); // Blue
-//
-//  // Do a theater marquee effect in various colors...
-//  theaterChase(strip.Color(127, 127, 127), 50); // White, half brightness
-//  theaterChase(strip.Color(127,   0,   0), 50); // Red, half brightness
-//  theaterChase(strip.Color(  0,   0, 127), 50); // Blue, half brightness
+  //  colorWipe(strip.Color(255,   0,   0), 50); // Red
+  //  colorWipe(strip.Color(  0, 255,   0), 50); // Green
+  //  colorWipe(strip.Color(  0,   0, 255), 50); // Blue
+  //
+  //  // Do a theater marquee effect in various colors...
+  //  theaterChase(strip.Color(127, 127, 127), 50); // White, half brightness
+  //  theaterChase(strip.Color(127,   0,   0), 50); // Red, half brightness
+  //  theaterChase(strip.Color(  0,   0, 127), 50); // Blue, half brightness
 
   //rainbow(&eye,10);             // Flowing rainbow cycle along the whole strip
-
-  for(int i=0; i<eye.numPixels(); i++) { // For each pixel in strip...
-      eye.setPixelColor(i, eye.Color(127,0,0));
+  while (digitalRead(4) == LOW) {
+    //digitalWrite(5,HIGH);
+    stepper.setMaxVelocity  ( 20 );
+    for (int i = 0; i < eye.numPixels(); i++) { // For each pixel in strip...
+      eye.setPixelColor(i, eye.Color(0, 0, 12));
     }
     eye.show(); // Update strip with new contents
 
 
-  rainbow(&krop,10);
-  
+    rainbow(&krop, 50);
+  }
+  while (digitalRead(4) == HIGH) {
+    //digitalWrite(5,HIGH);
+    stepper.setMaxVelocity  ( 250 );
+    for (int i = 0; i < eye.numPixels(); i++) { // For each pixel in strip...
+      eye.setPixelColor(i, eye.Color(255, 0, 0));
+    }
+    eye.show(); // Update strip with new contents
+    rainbow(&krop, 1);
+  }
+
 
   //theaterChaseRainbow(50); // Rainbow-enhanced theaterChase variant
 }
@@ -137,8 +153,8 @@ void rainbow(Adafruit_NeoPixel *strip, int wait) {
   // Color wheel has a range of 65536 but it's OK if we roll over, so
   // just count from 0 to 5*65536. Adding 256 to firstPixelHue each time
   // means we'll make 5*65536/256 = 1280 passes through this outer loop:
-  for(long firstPixelHue = 0; firstPixelHue < 5*65536; firstPixelHue += 256) {
-    for(int i=0; i<strip->numPixels(); i++) { // For each pixel in strip...
+  for (long firstPixelHue = 0; firstPixelHue < 5 * 65536; firstPixelHue += 256) {
+    for (int i = 0; i < strip->numPixels(); i++) { // For each pixel in strip...
       // Offset pixel hue by an amount to make one full revolution of the
       // color wheel (range of 65536) along the length of the strip
       // (strip.numPixels() steps):
@@ -149,21 +165,44 @@ void rainbow(Adafruit_NeoPixel *strip, int wait) {
       // is passed through strip.gamma32() to provide 'truer' colors
       // before assigning to each pixel:
       strip->setPixelColor(i, strip->gamma32(strip->ColorHSV(pixelHue)));
+      if (interrupt_flag != digitalRead(4)) {
+        interrupt_flag = digitalRead(4);
+        return;
+      }
+      interrupt_flag = digitalRead(4);
     }
     strip->show(); // Update strip with new contents
-    while(current_time_LED < last_time_LED + wait){
+    while (current_time_LED < last_time_LED + wait) {
       motor();
       current_time_LED = millis();
     }
-    last_time_LED = current_time_LED;  }
+    last_time_LED = current_time_LED;
+  }
 }
+/*
+void motor() {
+  current_time = millis();
+  if (current_time > last_time + 2000) {
+    if (tail_flag == true) {
+      stepper.moveSteps(51200 * 4);
+    }
+    else {
+      stepper.moveSteps(-51200 * 4);
+    }
+    tail_flag = !tail_flag;
+    last_time = current_time;
+  }
+}*/
 
 void motor(){
-  current_time = millis();
-  if(current_time > last_time+2000){
-    if(tail_flag == true){ stepper.moveSteps(51200 * 4);}
-    else {stepper.moveSteps(-51200 * 4);}
-  tail_flag = !tail_flag;
-  last_time = current_time;
+  if(thyra_flag == false){
+  stepper.moveToAngle(angle);
+  thyra_flag = true;
   }
+  if(stepper.getMotorState(POSITION_REACHED) == 0){
+    angle = angle * -1;
+    thyra_flag = false;
+    Serial.println(angle);
+  }
+
 }
