@@ -12,12 +12,23 @@ const int ISR_Reset = 4;
 #define Bytes SEGMENTS * 3 / 8
 byte LED[3 * SEGMENTS]; // [RGB][segment]
 byte SPI_OUTPUT[Bytes];
-bool new_data = false;
 
 // Global timing variables
 volatile uint32_t lastMicros = 0;
 volatile uint32_t animationFrameInterval = 50000;
 volatile uint8_t idx_ISR = 0;
+
+// Animation variables and button stuff.
+volatile uint32_t last_frame = 0;
+byte animationRunning = 0;
+long col = 0;
+byte buttonVal = 0;
+byte buttonValOld = 0;
+byte buttonPin = 2;
+unsigned long buttonPressedTime;
+byte red, green, blue;
+
+
 
 // Defining shortest period timing
 // TIMER_BASE_MICROS is used to define how many microseconds the shortest bit takes up.
@@ -37,8 +48,6 @@ static uint32_t onTime[8] = {TIMER_BASE_MICROS * 1, TIMER_BASE_MICROS * 2, TIMER
                             };
 // Init ESP8266 timer 0
 ESP8266Timer ITimer;
-
-unsigned long T1, T2;
 void ICACHE_RAM_ATTR TimerHandler(void)
 {
   // Calc SPI output for all channels
@@ -49,8 +58,6 @@ void ICACHE_RAM_ATTR TimerHandler(void)
   digitalWrite(LATCH, LOW);
   digitalWrite(LATCH, HIGH);
   digitalWrite(OE, LOW);
-  new_data = true;
-
   // Attach timer for next cycle
   if (ITimer.attachInterruptInterval(onTime[idx_ISR], TimerHandler)) {
 
@@ -79,6 +86,7 @@ void SetLED(int segmentID, byte Red, byte Green, byte Blue)// Set RGB values to 
 
 void setup()
 {
+  pinMode(buttonPin,INPUT);
   pinMode(ISR_Reset, OUTPUT);
   // initialize SPI:
   SPI.begin();
@@ -104,27 +112,26 @@ void setup()
   }
 }
 
-volatile uint32_t last_frame = 0;
-volatile uint8_t J_state = 0;
-byte animationRunning = 0;
-long col = 0;
-byte buttonVal = 0;
-byte buttonValOld = 0;
-//byte buttonPin =
-byte red, green, blue;
+
+
 void loop()
 {
-  if (new_data) {
-    new_data = false;
+
+  buttonValOld=buttonVal;
+  buttonVal=digitalRead(ButtonPin);
+  if(buttonVal==LOW && buttonValOld!=buttonVal && millis()-buttonPressedTime>1000)
+  {
+    buttonPressedTime=millis(); 
   }
 
-  animationRunning = ((millis() / 5000) % 3); // step between the 3 animations with a interval of 5s
+
+  animationRunning = ((millis() - buttonPressedTime)/ 7500) % 3; // step between the 3 animations with a interval of 5s
 
   if (micros() - last_frame > animationFrameInterval) {
     last_frame = micros();
 
     if (animationRunning == 0)
-    {
+    {// Beer refill animation
       animationFrameInterval = 50000;
       for (int i = 0; i < SEGMENTS; i++)
       {
@@ -148,13 +155,12 @@ void loop()
       }
     }
     else if (animationRunning == 1)
-    {
-      // rainbow color scroll on all segments at once
+    {// rainbow color scroll on all segments at once
       animationFrameInterval = 5000;
 
       for (int seg = 0; seg < SEGMENTS; seg++)
       {
-        GetRGBFromHue((col + seg * 10) % 255, red, green, blue,50);
+        GetRGBFromHue((col + seg * 10) % 255, red, green, blue,200);
         SetLED(seg, red, green, blue);
       }
       col++;
@@ -164,7 +170,7 @@ void loop()
       }
     }
     else if (animationRunning == 2)
-    {
+    {// theaterChase animatiion from edge to center with rainbow colorchange.
       animationFrameInterval = 5000;
       ClearLED();
       byte hue = millis() / 60 % 255;

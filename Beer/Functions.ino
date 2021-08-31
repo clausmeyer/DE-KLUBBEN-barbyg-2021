@@ -25,7 +25,7 @@ void ClearLED()
 }
 
 
-void GetRGBFromHue(byte hue, byte &Red, byte &Green, byte &Blue, float scale)
+void GetRGBFromHue(byte hue, byte &Red, byte &Green, byte &Blue, int scale)
 { // Convert Hue (0-255) to 8 bit RGB values.
   if (hue < 85)
   { // decrease red and increase green
@@ -51,9 +51,9 @@ void GetRGBFromHue(byte hue, byte &Red, byte &Green, byte &Blue, float scale)
     Green = 0;
     Blue = 0;
   }
-  Red = (int)(Red*255);
-  Green = (int)Green * 255;
-  Blue = (int)Blue * 255;
+  Red = (int)Red*scale/255;
+  Green = (int)Green*scale / 255;
+  Blue = (int)Blue*scale/255;
 
   Serial.print(Red);
   Serial.print("\t");
