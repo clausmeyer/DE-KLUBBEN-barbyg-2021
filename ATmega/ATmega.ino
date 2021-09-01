@@ -14,16 +14,17 @@ bool buttonPressed = false;
 unsigned long buttonPressTime;
 
 int targetValue = 0;
+byte BeerPin = 36;
 
-void theaterChase(uint32_t color, int start, int numLed, int velocity, int stepSize) {
-  int offset = millis() / velocity % abs(stepSize);
+void theaterChase(uint32_t color, int start, int numLed, int velocity, int stepSize,int offset) {
+  int Step = (offset+(millis() / velocity)) % abs(stepSize);
   if (stepSize > 0) {
-    for (int c = offset + start; c < numLed + start; c += stepSize) {
+    for (int c = Step + start; c < numLed + start; c += stepSize) {
       pixels.setPixelColor(c, color); // Set pixel 'c' to value 'color'
     }
   }
   else {
-    for (int c = start - offset - stepSize - 1; c < numLed + start; c -= stepSize) {
+    for (int c = start - Step - stepSize - 1; c < numLed + start; c -= stepSize) {
       pixels.setPixelColor(c, color); // Set pixel 'c' to value 'color'
     }
   }
@@ -53,9 +54,12 @@ void dataPacket(uint32_t color, int start, int dest, int offset) {
 
 void setup() {
   sevenSegSetup();
-  Serial.begin(9600);
+  Serial.begin(115200);
   pixels.begin(); // This initializes the NeoPixel library.
   psu.begin();
+  pinMode(BeerPin,OUTPUT);
+  digitalWrite(BeerPin,HIGH);
+  
 }
 
 void loop() {
@@ -63,8 +67,9 @@ void loop() {
 
   if (buttonPressed == true) {
     buttonAnim();
-    theaterChase(pixels.Color(0, 255, 0), 0, 181, 100, 3); // Clock line
+    theaterChase(pixels.Color(0, 255, 0), 0, 181, 100, 3,0); // Clock line
     xtal();
+    digitalWrite(BeerPin,HIGH);
   }
   else {
     IdleAnimation();
@@ -73,9 +78,9 @@ void loop() {
   pixels.show();
   pixels.clear();
 
-  int dir = (millis()/1000%2)*2-1;
-   int col1 = (millis()/1000%2);
-   int col2 = ((millis()/1000)+1)%2;
+  int dir = (millis()/2000%2)*2-1;
+   int col1 = (millis()/2000%2);
+   int col2 = ((millis()/2000)+1)%2;
    
   // 230V AC
   theaterChasePSU(psu.Color(255*col1, 0, 255*col2), 0, 34, 50, 5*dir);         // Top

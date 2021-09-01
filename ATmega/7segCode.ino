@@ -71,7 +71,7 @@ void ReadButton()
 {
   buttonValOld = buttonVal;
   buttonVal = digitalRead(buttonPin);
-  if (buttonVal == 0 & buttonVal != buttonValOld)
+  if (buttonVal == 0 & buttonVal != buttonValOld & millis() - buttonPressTime > 1000)
   {
     targetValue += BeerAmount; // updates the number the counter should reach
     valueDiffMax = targetValue - currentValue;

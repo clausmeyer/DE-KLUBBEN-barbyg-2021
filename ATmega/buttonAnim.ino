@@ -4,13 +4,12 @@ void buttonAnim() {
   int dataPacketStart = 312;
   int byteOffset = (millis() - buttonPressTime - 2000) / 20 % 240;
   unsigned long animTime = millis() - buttonPressTime;
-  //int dataPacketStart = 312;
 
 
   if (animTime <= 2100) {
-    theaterChase(pixels.Color(0, 200, 200), 363, 24, 125, -3);
-    theaterChase(pixels.Color(0, 255, 0), 333, 18, 75, 3);
-    theaterChase(pixels.Color(0, 0, 255), 351, 12, 75, -3);
+    theaterChase(pixels.Color(0, 200, 200), 363, 24, 125, -3, 0);
+    theaterChase(pixels.Color(0, 255, 0), 333, 18, 75, 3, 0);
+    theaterChase(pixels.Color(0, 0, 255), 351, 12, 75, -3, 0);
     incommingSignal();
 
     animStage = 1;
@@ -26,12 +25,6 @@ void buttonAnim() {
   }
   if (animTime >= 4760 && animTime <= 24000) {
     buttonPressed = false;
-    
-    theaterChase(pixels.Color(0, 200, 200), 0, 437, 100, 3);
-  }
-
-  if (animTime >= 10500) {
-    animStage = 0;
-    buttonPressed = false;
+    digitalWrite(BeerPin,LOW);
   }
 }

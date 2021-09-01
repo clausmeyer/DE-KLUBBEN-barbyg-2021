@@ -51,15 +51,15 @@ void GetRGBFromHue(byte hue, byte &Red, byte &Green, byte &Blue, int scale)
     Green = 0;
     Blue = 0;
   }
-  Red = (int)Red*scale/255;
-  Green = (int)Green*scale / 255;
-  Blue = (int)Blue*scale/255;
-
-  Serial.print(Red);
-  Serial.print("\t");
-  Serial.print(Blue);
-  Serial.print("\t");
-  Serial.println(Green);
-
-
+  Red = (int)Red * scale / 255;
+  Green = (int)Green * scale / 255;
+  Blue = (int)Blue * scale / 255;
+  /*
+    Serial.print(hue);
+    Serial.print("\t");
+    Serial.print(Red);
+    Serial.print("\t");
+    Serial.print(Green);
+    Serial.print("\t");
+    Serial.println(Blue);*/
 }
