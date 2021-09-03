@@ -29,9 +29,9 @@ unsigned long buttonPressedTime;
 byte red, green, blue;
 byte BeerColor[4][3] =
 { {170,  70,   0},
-  {170,  0,   0},
+  {180,  0,   0},
   {200,  50,   0},
-  {  0,   0, 170}
+  {  0,   0, 180}
 };
 
 byte BeerFoam[4][3] =
@@ -63,7 +63,7 @@ void ICACHE_RAM_ATTR TimerHandler(void)
   SPI.transfer(&SPI_OUTPUT, Bytes);
   digitalWrite(LATCH, LOW);
   digitalWrite(LATCH, HIGH);
-  digitalWrite(OE, LOW);
+  //digitalWrite(OE, LOW);
   // Attach timer for next cycle
   if (ITimer.attachInterruptInterval(onTime[idx_ISR], TimerHandler)) {
 
@@ -93,12 +93,13 @@ void SetLED(int segmentID, byte Red, byte Green, byte Blue)// Set RGB values to 
 void setup()
 {
   pinMode(buttonPin, INPUT_PULLUP);
+
   // initialize SPI:
   SPI.begin();
   SPI.beginTransaction(SPISettings(20000000, LSBFIRST, SPI_MODE0));
   pinMode(LATCH, OUTPUT);
   pinMode(OE, OUTPUT);
-  digitalWrite(OE, HIGH);
+  digitalWrite(OE, LOW);
 
   // Serial setup
 #if (TIMER_INTERRUPT_DEBUG)
@@ -125,7 +126,7 @@ void loop()
   {
     buttonPressedTime = millis();
     ClearLED();
-    Beer = 0;
+    Beer = 1;
   }
 
   animationRunning = ((millis() - buttonPressedTime) / 7800) % 3; // step between the 3 animations with a interval of 5s
@@ -142,13 +143,6 @@ void loop()
         {
           Beer = 0;
         }
-        Serial.print(Beer);
-        Serial.print("\t");
-        Serial.print(BeerColor[0][Beer]);
-        Serial.print("\t");
-        Serial.print(BeerColor[1][Beer]);
-        Serial.print("\t");
-        Serial.println(BeerColor[2 ][Beer]);
       }
 
       for (int i = 0; i < SEGMENTS; i++)
@@ -177,6 +171,14 @@ void loop()
           }
         }
       }
+      /*
+        Serial.print(Beer);
+        Serial.print("\t");
+        Serial.print(BeerColor[0][Beer]);
+        Serial.print("\t");
+        Serial.print(BeerColor[1][Beer]);
+        Serial.print("\t");
+        Serial.println(BeerColor[2 ][Beer]); */
       col++;
       if (col >= SEGMENTS + 15)
       {

@@ -7,9 +7,9 @@ void buttonAnim() {
 
 
   if (animTime <= 2100) {
-    theaterChase(pixels.Color(0, 200, 200), 363, 24, 125, -3, 0);
-    theaterChase(pixels.Color(0, 255, 0), 333, 18, 75, 3, 0);
-    theaterChase(pixels.Color(0, 0, 255), 351, 12, 75, -3, 0);
+    theaterChase(pixels.Color(0, 200, 200), 363, 23, 125, -3, 0);   // parabola
+    theaterChase(pixels.Color(0, 255, 0), 333, 18, 75, 3, 0);       // TX
+    theaterChase(pixels.Color(0, 0, 255), 351, 12, 75, -3, 0);      // RX
     incommingSignal();
 
     animStage = 1;

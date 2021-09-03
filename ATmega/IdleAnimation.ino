@@ -60,16 +60,16 @@ void IdleAnimation()
   theaterChase(pixels.Color(255, 0, 0), 313, 20, 100, 3, 0);
 
   // 5G  333 to  362 (30)
-  theaterChase(pixels.Color(0, 255, 0), 333, 18, 75, 3, 0); // TX
-  theaterChase(pixels.Color(0, 0, 255), 351, 12, 75, -3, 0); // RX
+  theaterChase(pixels.Color(  0,   0, 255), 333, 18, 75, 3, 0); // TX
+  theaterChase(pixels.Color(  0, 255,   0), 351, 12, 75, -3, 0); // RX
 
-  // parabol line 363 to 386 (24)
+  // parabol line 363 to 385 (23)
  // pixels.fill(pixels.Color(0, 255, 0), 363, 24);
 
-  theaterChase(pixels.Color(  0, 255, 255), 363, 24, 75,  -6, 0); // TX
-  theaterChase(pixels.Color(255,   0, 0), 363, 24, 75, 8, 0); // RX
+  theaterChase(pixels.Color(  0, 255, 255), 363, 23, 75,  -6, 0); // TX
+  theaterChase(pixels.Color(255,   0,   0), 363, 23, 75, 8, 0); // RX
 
-  // parabola itself 387 to 437 (50)
+  // parabola itself 386 to 436 (50)
   int parab = millis() / 50 % 100;
 
   int hue = millis() / 50 & 255;
@@ -77,10 +77,10 @@ void IdleAnimation()
   GetRGBFromHue(hue, RGBParab[0], RGBParab[1], RGBParab[2], 255);
   if (parab < 50)
   {
-    pixels.fill(pixels.Color(RGBParab[0], RGBParab[1], RGBParab[2]), 387, parab + 1);
+    pixels.fill(pixels.Color(RGBParab[0], RGBParab[1], RGBParab[2]), 386, parab + 1);
   }
   else
   {
-    pixels.fill(pixels.Color(RGBParab[0], RGBParab[1], RGBParab[2]), 387 + parab - 50, 100 - parab);
+    pixels.fill(pixels.Color(RGBParab[0], RGBParab[1], RGBParab[2]), 386 + parab - 50, 100 - parab);
   }
 }

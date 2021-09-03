@@ -14,7 +14,7 @@ bool buttonPressed = false;
 unsigned long buttonPressTime;
 
 int targetValue = 0;
-byte BeerPin = 36;
+int BeerPin = 25;
 
 void theaterChase(uint32_t color, int start, int numLed, int velocity, int stepSize,int offset) {
   int Step = (offset+(millis() / velocity)) % abs(stepSize);
